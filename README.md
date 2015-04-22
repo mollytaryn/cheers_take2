@@ -15,25 +15,22 @@ The program will print out:
 
 > I'd cheer for you, if only I knew who you were :(
 
-> Try again with `./cheers.rb [Name] [MM/DD Birthday]`
+> Try again with `./cheers [Name] [MM/DD Birthday]`
 
 ### Regular Usage
 
-Run the program by running `./cheers.rb Abby 08/25`
+Run the program by running `./cheers Molly 08/19`
 
 The first argument is the user's name.  The second argument is the user's birthday.
 
 The program outputs a cheer in the following format:
 
-> Give me an... A
-
-> Give me a... B
-
-> Give me a... B
-
+> Give me an... M
+> Give me an... O
+> Give me an... L
+> Give me an... L
 > Give me a... Y
-
-> Abby’s just GRAND!
+> Molly’s just GRAND!
 
 * Follow the proper grammatical for a and an. The rule is based on whether the spelling of a letter would begin with a vowel.
 * Skip non-word characters when printing the cheer (e.g. "Give me a..." lines)
@@ -41,7 +38,7 @@ The program outputs a cheer in the following format:
 
 After printing the cheer, the program outputs the number of days until the user's birthday:
 
-> Awesome!  Your birthday is in 45 days! Happy Birthday in advance!
+> Awesome! Your birthday is in 45 days! Happy Birthday in advance!
 
 If there was no input for birthday, the program instead says:
 

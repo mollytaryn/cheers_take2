@@ -1,4 +1,24 @@
 #!/usr/bin/env ruby
 
-puts "I'd cheer for you, if only I knew who you were :(
-Try again with `./cheers.rb [Name] [MM/DD Birthday]`"
+args = ARGV
+name = ARGV[0]
+birthday = ARGV[1]
+nonLetters = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "@", "#", "$", "%", "^", "&", "*", "/"]
+
+if args.empty?
+  puts "I'd cheer for you, if only I knew who you were :(
+  Try again with `./cheers.rb [Name] [MM/DD Birthday]`"
+elsif name == " " || name == ""
+  puts "Try again with `./cheers.rb [Name] [MM/DD Birthday]`"
+elsif nonLetters.any? { |i| name.include? i } == true
+  puts "Try again with `./cheers.rb [Name] [MM/DD Birthday]`"
+else
+  upperName = name.upcase
+  an_letters = "AEFHILMNORSX"
+  upperName.each_char do |letter|
+    article = "a"
+    article = an_letters.include?(letter) ? "an" : "a"
+    puts "Give me #{article}... #{letter}"
+  end
+  puts "#{name}'s just GRAND!\nI would wish you a Happy Birthday, if I knew when that was!"
+end
