@@ -3,22 +3,49 @@
 args = ARGV
 name = ARGV[0]
 birthday = ARGV[1]
-nonLetters = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "@", "#", "$", "%", "^", "&", "*", "/"]
+non_letters = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "@", "#", "$", "%", "^", "&", "*", "/"]
+
+def exit_with_error
+  puts <<EOS
+I'd cheer for you, if only I knew who you were :(
+Try again with `./cheers.rb [Name] [MM/DD Birthday]`
+EOS
+  exit
+end
+# '
 
 if args.empty?
-  puts "I'd cheer for you, if only I knew who you were :(
-  Try again with `./cheers.rb [Name] [MM/DD Birthday]`"
-elsif name == " " || name == ""
-  puts "Try again with `./cheers.rb [Name] [MM/DD Birthday]`"
-elsif nonLetters.any? { |i| name.include? i } == true
-  puts "Try again with `./cheers.rb [Name] [MM/DD Birthday]`"
-else
-  upperName = name.upcase
-  an_letters = "AEFHILMNORSX"
-  upperName.each_char do |letter|
-    article = "a"
-    article = an_letters.include?(letter) ? "an" : "a"
-    puts "Give me #{article}... #{letter}"
-  end
-  puts "#{name}'s just GRAND!\nI would wish you a Happy Birthday, if I knew when that was!"
+  exit_with_error
 end
+
+cheerable_name = name.upcase.gsub(/[^A-Z]/, "")
+
+if cheerable_name.empty?
+  exit_with_error
+end
+
+
+if non_letters.any? { |i| name.include? i } == true
+  exit_with_error
+end
+
+cheerable_name.each_char do |letter|
+  an_letters = "AEFHILMNORSX"
+  article = "a"
+  article = an_letters.include?(letter) ? "an" : "a"
+  puts "Give me #{article}... #{letter}"
+end
+puts "#{name}'s just GRAND!"
+puts "I would wish you a Happy Birthday, if I knew when that was!"
+
+
+# if birthday.to_s.length > 5
+#   cheerableName = name.upcase
+#   an_letters = "AEFHILMNORSX"
+#   cheerableName.each_char do |letter|
+#     article = "a"
+#     article = an_letters.include?(letter) ? "an" : "a"
+#     puts "Give me #{article}... #{letter}"
+#   end
+#   puts "I would wish you a Happy Birthday, if I knew when that was! Could you give that to me in mm/dd format next time?"
+# end

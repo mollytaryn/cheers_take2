@@ -22,6 +22,7 @@ EOS
   def test_invalid_name_if_empty_string
     output = `./cheers ""`
     expected = <<EOS
+I'd cheer for you, if only I knew who you were :(
 Try again with `./cheers.rb [Name] [MM/DD Birthday]`
 EOS
     assert_equal expected, output
@@ -31,6 +32,7 @@ EOS
   def test_invalid_name_if_whitespace
     output = `./cheers " "`
     expected = <<EOS
+I'd cheer for you, if only I knew who you were :(
 Try again with `./cheers.rb [Name] [MM/DD Birthday]`
 EOS
     assert_equal expected, output
@@ -40,6 +42,7 @@ EOS
   def test_one_invalid_argument_name
     output = `./cheers $M@lly`
     expected = <<EOS
+I'd cheer for you, if only I knew who you were :(
 Try again with `./cheers.rb [Name] [MM/DD Birthday]`
 EOS
     assert_equal expected, output
@@ -49,6 +52,7 @@ EOS
   def test_invalid_name_if_non_word_characters
     output = `./cheers 39%@1`
     expected = <<EOS
+I'd cheer for you, if only I knew who you were :(
 Try again with `./cheers.rb [Name] [MM/DD Birthday]`
 EOS
     assert_equal expected, output
@@ -58,6 +62,7 @@ EOS
   def test_birthday_instead_of_name
     output = `./cheers 08/19`
     expected = <<EOS
+I'd cheer for you, if only I knew who you were :(
 Try again with `./cheers.rb [Name] [MM/DD Birthday]`
 EOS
     assert_equal expected, output
@@ -65,6 +70,21 @@ EOS
 
   def test_one_valid_argument_name
     output = `./cheers Molly`
+    expected = <<EOS
+Give me an... M
+Give me an... O
+Give me an... L
+Give me an... L
+Give me a... Y
+Molly's just GRAND!
+I would wish you a Happy Birthday, if I knew when that was!
+EOS
+    assert_equal expected, output
+  end
+
+
+  def test_one_valid_name_one_invalid_birthday
+    output = `./cheers Molly 08/19/2015`
     expected = <<EOS
 Give me an... M
 Give me an... O
@@ -105,23 +125,6 @@ EOS
     assert_equal expected, output
   end
 
-  def test_one_invalid_argument_birthday
-    skip
-    output = `./cheers 08/19/2015`
-    expected = <<EOS
-I couldn't understand that. Could you give that to me in mm/dd format next time?
-EOS
-    assert_equal expected, output
-  end
-
-  def test_one_valid_name_one_invalid_birthday
-    skip
-    output = `./cheers Molly 08/19/2015`
-    expected = <<EOS
-Try again with `./cheers.rb [Name] [MM/DD Birthday]`
-EOS
-    assert_equal expected, output
-  end
 
   def test_one_invalid_name_one_valid_birthday
     skip
