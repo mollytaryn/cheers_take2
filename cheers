@@ -30,18 +30,7 @@ if non_letters.any? { |i| name.include? i } == true
   exit_with_error
 end
 
-
-cheerable_name.each_char do |letter|
-  an_letters = "AEFHILMNORSX"
-  article = "a"
-  article = an_letters.include?(letter) ? "an" : "a"
-  puts "Give me #{article}... #{letter}"
-end
-puts "#{name}'s just GRAND!"
-puts "I would wish you a Happy Birthday, if I knew when that was!"
-
-date = Date.parse(birthday)
-if date.include?(date.year)
+if birthday == nil
   cheerable_name.each_char do |letter|
     an_letters = "AEFHILMNORSX"
     article = "a"
@@ -50,4 +39,40 @@ if date.include?(date.year)
   end
   puts "#{name}'s just GRAND!"
   puts "I would wish you a Happy Birthday, if I knew when that was!"
+
+elsif birthday.length > 5
+  cheerable_name.each_char do |letter|
+    an_letters = "AEFHILMNORSX"
+    article = "a"
+    article = an_letters.include?(letter) ? "an" : "a"
+    puts "Give me #{article}... #{letter}"
+  end
+  puts "#{name}'s just GRAND!"
+  puts "I would wish you a Happy Birthday, if I knew when that was!"
+
+else
+  date = Date.parse(birthday).yday
+  today = Date.today.yday
+  if date > today
+    countdown = date - today
+    cheerable_name.each_char do |letter|
+      an_letters = "AEFHILMNORSX"
+      article = "a"
+      article = an_letters.include?(letter) ? "an" : "a"
+      puts "Give me #{article}... #{letter}"
+    end
+    puts "#{name}'s just GRAND!"
+    puts "Awesome! Your birthday is in #{countdown} days! Happy Birthday in advance!"
+
+  elsif today > date
+    countdown = date + today
+    cheerable_name.each_char do |letter|
+      an_letters = "AEFHILMNORSX"
+      article = "a"
+      article = an_letters.include?(letter) ? "an" : "a"
+      puts "Give me #{article}... #{letter}"
+    end
+    puts "#{name}'s just GRAND!"
+    puts "Awesome! Your birthday is in #{countdown} days! Happy Birthday in advance!"
+  end
 end

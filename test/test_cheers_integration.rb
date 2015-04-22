@@ -134,7 +134,6 @@ EOS
 
 
   def test_two_valid_arguments
-    skip
     output = `./cheers Molly 08/19`
     expected = <<EOS
 Give me an... M
@@ -142,16 +141,14 @@ Give me an... O
 Give me an... L
 Give me an... L
 Give me a... Y
-Molly’s just GRAND!
-
-Awesome! Your birthday is in 121 days! Happy Birthday in advance!
+Molly's just GRAND!
+Awesome! Your birthday is in 119 days! Happy Birthday in advance!
 EOS
     assert_equal expected, output
   end
 
 
   def test_valid_date_single_number_month
-    skip
     output = `./cheers Molly 8/19`
     expected = <<EOS
 Give me an... M
@@ -159,9 +156,23 @@ Give me an... O
 Give me an... L
 Give me an... L
 Give me a... Y
-Molly’s just GRAND!
+Molly's just GRAND!
+Awesome! Your birthday is in 119 days! Happy Birthday in advance!
+EOS
+    assert_equal expected, output
+  end
 
-Awesome! Your birthday is in 121 days! Happy Birthday in advance!
+
+  def test_valid_date_birthday_already_happened_this_year
+    output = `./cheers Molly 01/01`
+    expected = <<EOS
+Give me an... M
+Give me an... O
+Give me an... L
+Give me an... L
+Give me a... Y
+Molly's just GRAND!
+Awesome! Your birthday is in 113 days! Happy Birthday in advance!
 EOS
     assert_equal expected, output
   end
@@ -175,22 +186,4 @@ I couldn't understand that. Could you give that to me in mm/dd format next time?
 EOS
     assert_equal expected, output
   end
-
-
-  def test_valid_date_birthday_already_happened_this_year
-    skip
-    output = `./cheers Molly 01/01`
-    expected = <<EOS
-Give me an... M
-Give me an... O
-Give me an... L
-Give me an... L
-Give me a... Y
-Molly’s just GRAND!
-
-Awesome! Your birthday is in 121 days! Happy Birthday in advance!
-EOS
-    assert_equal expected, output
-  end
-
 end
