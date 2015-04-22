@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+require 'date'
 
 args = ARGV
 name = ARGV[0]
@@ -29,6 +30,7 @@ if non_letters.any? { |i| name.include? i } == true
   exit_with_error
 end
 
+
 cheerable_name.each_char do |letter|
   an_letters = "AEFHILMNORSX"
   article = "a"
@@ -38,14 +40,14 @@ end
 puts "#{name}'s just GRAND!"
 puts "I would wish you a Happy Birthday, if I knew when that was!"
 
-
-# if birthday.to_s.length > 5
-#   cheerableName = name.upcase
-#   an_letters = "AEFHILMNORSX"
-#   cheerableName.each_char do |letter|
-#     article = "a"
-#     article = an_letters.include?(letter) ? "an" : "a"
-#     puts "Give me #{article}... #{letter}"
-#   end
-#   puts "I would wish you a Happy Birthday, if I knew when that was! Could you give that to me in mm/dd format next time?"
-# end
+date = Date.parse(birthday)
+if date.include?(date.year)
+  cheerable_name.each_char do |letter|
+    an_letters = "AEFHILMNORSX"
+    article = "a"
+    article = an_letters.include?(letter) ? "an" : "a"
+    puts "Give me #{article}... #{letter}"
+  end
+  puts "#{name}'s just GRAND!"
+  puts "I would wish you a Happy Birthday, if I knew when that was!"
+end
