@@ -30,6 +30,7 @@ if non_letters.any? { |i| name.include? i } == true
   exit_with_error
 end
 
+
 if birthday == nil
   cheerable_name.each_char do |letter|
     an_letters = "AEFHILMNORSX"
@@ -50,7 +51,7 @@ elsif birthday.length > 5
   puts "#{name}'s just GRAND!"
   puts "I would wish you a Happy Birthday, if I knew when that was!"
 
-else
+elsif birthday
   date = Date.parse(birthday).yday
   today = Date.today.yday
   if date > today
@@ -75,4 +76,11 @@ else
     puts "#{name}'s just GRAND!"
     puts "Awesome! Your birthday is in #{countdown} days! Happy Birthday in advance!"
   end
+
+# else
+#   begin
+#     Date.parse(birthday)
+#   rescue ArgumentError
+#     puts "I couldn't understand that. Could you give that to me in mm/dd format next time?"
+#   end
 end

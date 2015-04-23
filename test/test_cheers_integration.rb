@@ -179,7 +179,6 @@ EOS
 
 
   def test_invalid_date_day_before_month
-    skip
     output = `./cheers Molly 19/08`
     expected = <<EOS
 I couldn't understand that. Could you give that to me in mm/dd format next time?
