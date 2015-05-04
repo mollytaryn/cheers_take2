@@ -9,7 +9,7 @@ non_letters = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "@", "#", "$", 
 def exit_with_error
   puts <<EOS
 I'd cheer for you, if only I knew who you were :(
-Try again with `./cheers.rb [Name] [MM/DD Birthday]`
+Try again with `./cheers [Name] [MM/DD Birthday]`
 EOS
   exit
 end
@@ -52,7 +52,12 @@ elsif birthday.length > 5
   puts "I would wish you a Happy Birthday, if I knew when that was!"
 
 elsif birthday
-  date = Date.parse(birthday).yday
+  begin
+    date = Date.parse(birthday).yday
+  rescue ArgumentError
+    puts "I couldn't understand that. Could you give that to me in mm/dd format next time?"
+    exit
+  end
   today = Date.today.yday
   if date > today
     countdown = date - today
@@ -76,11 +81,4 @@ elsif birthday
     puts "#{name}'s just GRAND!"
     puts "Awesome! Your birthday is in #{countdown} days! Happy Birthday in advance!"
   end
-
-# else
-#   begin
-#     Date.parse(birthday)
-#   rescue ArgumentError
-#     puts "I couldn't understand that. Could you give that to me in mm/dd format next time?"
-#   end
 end
